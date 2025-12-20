@@ -41,13 +41,7 @@ export const Header = () => {
 						onClick={() => navigate('/compare-locations')}
 					>
 						{compareLocations.length}
-						<GitCompare
-							size={20}
-							className={cn(
-								compareLocations.length === 0 &&
-									'pointer-events-none opacity-40',
-							)}
-						/>
+						<GitCompare size={20} />
 					</Badge>
 				</div>
 				<UnitsSelect />

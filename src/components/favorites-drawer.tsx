@@ -93,15 +93,17 @@ export const FavoritesDrawer = () => {
 					onOpenChange={setOpen}
 					direction='right'
 				>
-					<DrawerTrigger asChild>
+					<DrawerTrigger
+						asChild
+						className={cn(
+							favorites.length === 0 && 'pointer-events-none opacity-70',
+						)}
+					>
 						<div>
 							<Button
 								size='lg'
 								variant='outline'
-								className={cn(
-									'text-neutral-0 hidden bg-neutral-700 hover:bg-neutral-600 md:block',
-									favorites.length === 0 && 'pointer-events-none opacity-70',
-								)}
+								className='text-neutral-0 hidden bg-neutral-700 hover:bg-neutral-600 md:block'
 							>
 								View favorites {favorites.length > 0 && `(${favorites.length})`}
 							</Button>
@@ -211,131 +213,6 @@ export const FavoritesDrawer = () => {
 					</DrawerContent>
 				</Drawer>
 			</div>
-
-			{/* Mobile Trigger */}
-			{/* <div className='md:hidden'>
-				<Drawer
-					open={open}
-					onOpenChange={setOpen}
-				>
-					<DrawerTrigger asChild>
-						<div className='relative inline-block'>
-							<Badge
-								className={cn(
-									'absolute -top-2 -right-2',
-									favorites.length === 0 && 'hidden',
-								)}
-								variant='destructive'
-							>
-								{favorites.length}
-							</Badge>
-							<Button
-								variant='ghost'
-								size='icon'
-								className={cn(
-									'h-10 w-10',
-									favorites.length === 0 && 'opacity-40',
-								)}
-							>
-								<Star className='h-5 w-5' />
-							</Button>
-						</div>
-					</DrawerTrigger>
-					<DrawerContent className='text-neutral-0 h-[80vh] border-neutral-700 bg-neutral-800'>
-						<DrawerHeader className='flex flex-row items-center justify-between'>
-							<div className='flex items-center gap-2'>
-								<Star
-									className='size-5 text-orange-500'
-									fill='currentColor'
-								/>
-								<DrawerTitle className='text-neutral-0 text-lg font-semibold'>
-									Favorites
-								</DrawerTitle>
-							</div>
-							<DrawerClose asChild>
-								<Button
-									variant='ghost'
-									size='icon'
-									className='h-8 w-8'
-								>
-									<X className='h-4 w-4' />
-								</Button>
-							</DrawerClose>
-						</DrawerHeader>
-
-						<div className='flex-1 overflow-y-auto px-4 py-2'>
-							{favorites.length > 0 ? (
-								<div className='flex flex-col gap-2'>
-									{favorites.map((fav, index) => {
-										const isActive =
-											currentLocation?.latitude === fav.latitude &&
-											currentLocation?.longitude === fav.longitude;
-										const isSelected = index === selectedIndex;
-
-										return (
-											<div
-												ref={(el) => {
-													itemRefs.current[index] = el;
-												}}
-												key={`${fav.latitude}-${fav.longitude}`}
-												className={cn(
-													'flex items-center justify-between rounded-lg p-3 transition-colors',
-													isActive
-														? 'bg-blue-700'
-														: isSelected
-															? 'bg-neutral-600'
-															: 'bg-neutral-700 hover:bg-neutral-600',
-												)}
-											>
-												<button
-													type='button'
-													onClick={() => handleSelectFavorite(fav)}
-													className='flex flex-1 items-center gap-2 text-left'
-												>
-													<MapPin className='size-4 text-neutral-300' />
-													<div>
-														<p className='text-neutral-0 text-sm font-medium'>
-															{fav.name}
-														</p>
-														<p className='text-xs text-neutral-300'>
-															{fav.country}
-														</p>
-													</div>
-												</button>
-
-												<Button
-													variant='ghost'
-													size='sm'
-													onClick={handleRemoveFavorite(fav)}
-													className='h-8 w-8 p-0 text-neutral-400 hover:text-red-500'
-												>
-													<Trash2 className='size-4' />
-												</Button>
-											</div>
-										);
-									})}
-								</div>
-							) : (
-								<div className='flex h-full flex-col items-center justify-center py-8'>
-									<Star className='mb-4 size-12 text-neutral-400' />
-									<p className='text-neutral-400'>No favorites yet</p>
-								</div>
-							)}
-						</div>
-
-						<DrawerFooter>
-							<DrawerClose asChild>
-								<Button
-									variant='outline'
-									className='text-neutral-0 w-full border-neutral-600'
-								>
-									Close
-								</Button>
-							</DrawerClose>
-						</DrawerFooter>
-					</DrawerContent>
-				</Drawer>
-			</div> */}
 		</div>
 	);
 };

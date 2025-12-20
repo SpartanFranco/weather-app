@@ -45,7 +45,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 		setActiveIndex(-1);
 	}, [searchQuery.data]);
 
-	// Update query when voice transcript changes
 	useEffect(() => {
 		if (transcript) {
 			handleChange({
@@ -101,7 +100,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 		>
 			<div className='grid w-full items-center gap-2 md:grid-cols-[1fr_5rem] md:gap-5'>
 				<div className='relative w-full'>
-					{/* Input de shadcn/ui con las mismas clases de estilo */}
 					<div className='relative'>
 						<Search className='absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 transform text-neutral-400' />
 						<Input
@@ -113,7 +111,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 							onKeyDown={handleKeyDown}
 							className='text-neutral-0 h-14 w-full rounded-md border border-neutral-600 bg-neutral-700 pr-12 pl-12 placeholder:text-lg placeholder:font-light placeholder:tracking-wide placeholder:text-neutral-400 hover:border-neutral-500'
 						/>
-						{/* Botón de voz, ahora posicionado absolutamente */}
+
 						{voiceSupported && (
 							<Button
 								type='button'
@@ -138,12 +136,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 					/>
 				</div>
 
-				{/* Botón de búsqueda de shadcn/ui con las mismas clases */}
 				<Button
 					type='submit'
 					variant='default'
 					disabled={isLoading || !query.trim()}
-					className='text-neutral-0 flex h-14 w-full items-center justify-center gap-1 rounded-md bg-blue-500 px-6 text-lg hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50'
+					className='text-neutral-0 flex h-14 w-fit items-center justify-center gap-1 rounded-md bg-blue-500 px-6 text-lg hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50'
 				>
 					{isLoading ? 'Searching...' : 'Search'}
 				</Button>
